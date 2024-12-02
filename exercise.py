@@ -106,20 +106,61 @@
 # - Convert the string input to an integer using `int()`.
 # - Apply conditional logic to perform the correct age calculation based on the dog's age.
 
-def calculate_dog_years():
+# def calculate_dog_years():
+#     # Your control flow logic goes here
+#     try:
+#         dog_age = float(input("Input a dog's age in human years: ").strip())
+#         if dog_age < 0:
+#             print('please enter a valid age (non-negative number).')
+#         else:
+#             if dog_age <= 2:
+#                 dog_years = dog_age * 10  
+#             else:
+#                 dog_years = 20 + (dog_age - 2) * 7  
+#             print(f"the dog's age in dog years is {dog_years:.1f}.")
+#     except ValueError:
+#         print("Invalid input. Please enter a numeric value.")
+# # Call the function
+# if __name__ == "__main__":
+#     calculate_dog_years()
+
+# Exercise 4: Weather Advice
+#
+# Write a Python script named `weather_advice` that provides clothing advice based on weather conditions.
+#
+# Requirements:
+# - The script should prompt the user to enter if it is cold (yes/no).
+# - Then, ask if it is raining (yes/no).
+# - Use logical operators to determine clothing advice:
+#   - If it is cold AND raining, print "Wear a waterproof coat."
+#   - If it is cold BUT NOT raining, print "Wear a warm coat."
+#   - If it is NOT cold but raining, print "Carry an umbrella."
+#   - If it is NOT cold AND NOT raining, print "Wear light clothing."
+#
+# Hints:
+# - Use logical operators (`AND`, `OR`, `NOT`) in your if statements to handle multiple conditions.
+
+def weather_advice(**kwargs):
     # Your control flow logic goes here
-    try:
-        dog_age = float(input("Input a dog's age in human years: ").strip())
-        if dog_age < 0:
-            print('please enter a valid age (non-negative number).')
-        else:
-            if dog_age <= 2:
-                dog_years = dog_age * 10  
-            else:
-                dog_years = 20 + (dog_age - 2) * 7  
-            print(f"the dog's age in dog years is {dog_years:.1f}.")
-    except ValueError:
-        print("Invalid input. Please enter a numeric value.")
-# Call the function
+    is_cold = kwargs.get('cold', 'no').strip().lower()  
+    is_raining = kwargs.get('raining', 'no').strip().lower()  
+
+    
+    if is_cold not in ['yes', 'no'] or is_raining not in ['yes', 'no']:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+        return  
+
+    if is_cold == 'yes' and is_raining == 'yes':
+        print("Wear a waterproof coat.")
+    elif is_cold == 'yes' and is_raining == 'no':
+        print("Wear a warm coat.")
+    elif is_cold == 'no' and is_raining == 'yes':
+        print("Carry an umbrella.")
+    else:  
+        print("Wear light clothing.")
+
 if __name__ == "__main__":
-    calculate_dog_years()
+    is_cold_input = input("Is it cold? (yes/no): ").strip().lower()
+    is_raining_input = input("Is it raining? (yes/no): ").strip().lower()
+    weather_advice(cold=is_cold_input, raining=is_raining_input)
+
